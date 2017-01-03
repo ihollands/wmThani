@@ -20,6 +20,8 @@
   ]);
 
   app.controller("RegisterCtrl", [
+    "$state",
+    "User",
     RegisterControllerFunction
   ])
 
@@ -83,8 +85,6 @@ function UserFactoryFunction ($resource) {
 function LoginControllerFunction ($state, User) {
     var vm = this
 
-    vm.user = {}
-
     vm.credentials = {
       username : "",
       password : ""
@@ -92,8 +92,8 @@ function LoginControllerFunction ($state, User) {
 
     vm.onSubmit = function () {
       User.get({username: vm.credentials.username}).$promise.then(function(response) {
-        if(response) {
           vm.user = response;
+          if(vm.credentials.username == vm.user.username) {
           if (vm.credentials.password == vm.user.hash) {
             $state.go("show", {username: vm.credentials.username})
             }
@@ -105,8 +105,18 @@ function LoginControllerFunction ($state, User) {
 }
 
 
-function RegisterControllerFunction () {
+function RegisterControllerFunction ($state, User) {
   var vm = this
+
+  vm.user = new User()
+
+  vm.create = function() {
+    vm.user.$save().then(() => {
+      $state.go("show", {username: vm.user.username})
+    })
+
+  }
+
 }
 
 //Route Functions
@@ -123,14 +133,15 @@ function UserShowControllerFunction($state, $stateParams, User) {
 function UserEditControllerFunction($state, $stateParams, User) {
   var vm = this
 
-  vm.user = User.get({username: $stateParams.username})
+  User.get({username: $stateParams.username}).$promise.then(response => {
+    vm.user = response
+  })
 
-  vm.newInfo = {}
-
-  vm.update = function() {
+  vm.update = function(){
     vm.user.$update({username: $stateParams.username}).then(function(){
       $state.go("show", {username: $stateParams.username})
     })
+
   }
 
   vm.destroy = function() {

@@ -1,8 +1,6 @@
 <h2>Welcome, {{vm.user.username}}!</h2>
 
-<a href="/users">all users</a>
-
-<img src="http://lorempixel.com/200/200/people" alt="{{vm.user.username}} profile photo">
+<img src="{{vm.user.img_url}}" alt="{{vm.user.username}} profile photo">
 
 <table>
   <caption>user</caption>
@@ -19,8 +17,6 @@
     <td>{{vm.user.email}}</td>
   </tr>
 </table>
-
-<br/>
 
 <table>
   <caption>location</caption>
@@ -49,8 +45,6 @@
     <td>{{vm.user.gym}}</td>
   </tr>
 </table>
-
-<br/>
 
 <table>
   <caption>lifts &amp; workout prefs</caption>
@@ -84,4 +78,4 @@
   </tr>
 </table>
 
-<button class="btn btn-default" ng-click="vm.onSubmit()">Edit Profile</button>
+<a data-ui-sref="edit({username: vm.user.username})">Edit Profile</a>

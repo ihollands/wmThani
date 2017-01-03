@@ -1,24 +1,29 @@
 html, body {
-  font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Open Sans', sans-serif;
+background-color: lightgrey;
 }
 
 table {
-  text-transform: capitalize;
+  border-collapse: separate;
+  border-spacing: .2em 2em;
   margin: 20px auto;
-  border: 1px solid black;
   width: 40%;
   vertical-align: middle;
 }
 
 th {
-  padding: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
   width: 50%;
-  border: 1px solid blue;
+  border-top: 3px solid black;
+  border-bottom: 3px solid rgba(0,0,0,0);
+
 }
 
 td {
-  padding: 5px;
   text-align: center;
+  border-top: 3px solid black;
+  border-bottom: 3px solid rgba(0,0,0,0);
 }
 
 img {
@@ -33,6 +38,29 @@ h2 {
   text-transform: uppercase;
 }
 
-form {
-  text-align: center;
+.flex {
+  margin: 0 auto;
+  display: flex;
+  width: 30%;
+}
+
+label {
+  display: inline;
+}
+
+input {
+  text-align:center;
+  outline: none;
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  border: none;
+  background-color: transparent;
+}
+
+input:focus {
+  border-bottom: 3px solid darkred;
+  color: darkred;
 }

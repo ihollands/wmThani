@@ -22,7 +22,7 @@ app.engine(".hbs", hbs({
 //tells body parser to parse JSON
 // app.use(favicon(__dirname + '/public/favicon.ico'))
 app.use("/assets", express.static("public"))
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 
 app.get("/api/users", function(req, res){
@@ -38,20 +38,21 @@ app.get("/api/users/:username", function(req, res){
 });
 
 app.post("/api/users", function(req, res){
-  User.create(req.body.user).then(function(user){
-    res.redirect("/users/" + user.username);
+  User.create(req.body).then(function(user){
+    res.json(user);
   });
 });
 
-app.post("/api/users/:username", function(req, res){
+app.delete("/api/users/:username", function(req, res){
   User.findOneAndRemove({username: req.params.username}).then(function(){
     res.json({success: true})
   });
 });
 
-app.post("/api/users/:username", function(req, res){
-  User.findOneAndUpdate({username: req.params.username}, req.body.user, {new: true}).then(function(user){
-    res.json(user);
+app.put("/api/users/:username", function(req, res){
+  console.log(req.body)
+  User.findOneAndUpdate({username: req.params.username}, req.body, {new: true}).then(function(user){
+    res.json(user)
   });
 });
 
