@@ -1,0 +1,87 @@
+<h2>Welcome, {{vm.user.username}}!</h2>
+
+<a href="/users">all users</a>
+
+<img src="http://lorempixel.com/200/200/people" alt="{{vm.user.username}} profile photo">
+
+<table>
+  <caption>user</caption>
+  <tr>
+    <th>first name</th>
+    <td>{{vm.user.first_name}}</td>
+  </tr>
+  <tr>
+    <th>last name</th>
+    <td>{{vm.user.last_name}}</td>
+  </tr>
+  <tr>
+    <th>email</th>
+    <td>{{vm.user.email}}</td>
+  </tr>
+</table>
+
+<br/>
+
+<table>
+  <caption>location</caption>
+  <tr>
+    <th>city</th>
+    <td>{{vm.user.city}}</td>
+  </tr>
+  <tr>
+    <th>state</th>
+    <td>{{vm.user.state}}</td>
+  </tr>
+  <tr>
+    <th>ZIP</th>
+    <td>{{vm.user.zip}}</td>
+  </tr>
+  <tr>
+    <th>street address</th>
+    <td>{{vm.user.street_address1}}</td>
+  </tr>
+  <tr>
+    <th>apt or condo #</th>
+    <td>{{vm.user.street_address2}}</td>
+  </tr>
+  <tr>
+    <th>your gym</th>
+    <td>{{vm.user.gym}}</td>
+  </tr>
+</table>
+
+<br/>
+
+<table>
+  <caption>lifts &amp; workout prefs</caption>
+  <tr>
+    <th>age</th>
+    <td>{{vm.user.age}}</td>
+  </tr>
+  <tr>
+    <th>weight</th>
+    <td>{{vm.user.weight}}</td>
+  </tr>
+  <tr>
+    <th>workout frequency (per week)</th>
+    <td>{{vm.user.workout_freq}}</td>
+  </tr>
+  <tr>
+    <th>workout time</th>
+    <td>{{vm.user.workout_time}}</td>
+  </tr>
+  <tr>
+    <th>max bench press (lbs)</th>
+    <td>{{vm.user.bench}}</td>
+  </tr>
+  <tr>
+    <th>max back squat (lbs)</th>
+    <td>{{vm.user.squat}}</td>
+  </tr>
+  <tr>
+    <th>max deadlift (lbs)</th>
+    <td>{{vm.user.deadlift}}</td>
+  </tr>
+</table>
+
+<button class="btn btn-default" ng-click="vm.onSubmit()">Edit Profile</button>

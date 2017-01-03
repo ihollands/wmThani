@@ -1,7 +1,7 @@
-var Schema = require("./schema.js");
+var mongoose = require("./schema");
 
-var User = Schema.User
-var Connection = Schema.Connection
+var User = mongoose.model("User")
+var Connection = mongoose.model("Connection")
 
 //clear the database
 User.remove({}, err => {
@@ -17,12 +17,12 @@ Connection.remove({}, err => {
 });
 
 // generate instances of User and Connection.
-var diana = new User({username: 'dvanvleezy', age: 29, email: "dvanvleet88@gmail.com", state: "VA"})
-var ian = new User({username: 'ihollands', age: 28, email: "ianchollands@gmail.com", state: "DC"})
-var alex = new User({username: 'athemanno', age: 26, email: "amanno@gmail.com", state: "NY"})
-var liza = new User({username: 'lizabuff', age: 24, email: "lfloyd@gmail.com", state: "MD"})
-var khoi = new User({username: 'khoidafish', age: 24, email: "kfish@gmail.com", state: "MD"})
-var kevin = new User({username: 'tokevinornottokevin', age: 25, email: "kmonahan@gmail.com", state: "TX"})
+var diana = new User({username: 'dvanvleezy', age: 29, email: "dvanvleet88@gmail.com", state: "VA", hash: "dianaPass"})
+var ian = new User({username: 'ihollands', age: 28, email: "ianchollands@gmail.com", state: "DC", hash: "ianPass"})
+var alex = new User({username: 'athemanno', age: 26, email: "amanno@gmail.com", state: "NY", hash: "alexPass"})
+var liza = new User({username: 'lizabuff', age: 24, email: "lfloyd@gmail.com", state: "MD", hash: "lizaPass"})
+var khoi = new User({username: 'khoidafish', age: 24, email: "kfish@gmail.com", state: "MD", hash: "khoiPass"})
+var kevin = new User({username: 'tokevinornottokevin', age: 25, email: "kmonahan@gmail.com", state: "TX", hash: "kevinPass"})
 
 var connection1 = new Connection({
   messages: [

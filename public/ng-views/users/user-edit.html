@@ -1,0 +1,84 @@
+<h2>profile editor</h2>
+
+<form ng-submit="vm.onSubmit()">
+  <table>
+    <caption>user</caption>
+    <tr>
+      <th>first name</th>
+      <td><input type="text" ng-model="vm.newInfo.first_name"></td>
+    </tr>
+    <tr>
+      <th>last name</th>
+      <td><input type="text" ng-model="vm.newInfo.last_name"></td>
+    </tr>
+    <tr>
+      <th>email</th>
+      <td><input type="text" ng-model="vm.newInfo.email"></td>
+    </tr>
+    <tr>
+      <th>image url</th>
+      <td><input type="text" ng-model="vm.newInfo.img_url"></td>
+    </tr>
+  </table>
+
+  <table>
+    <caption>location</caption>
+    <tr>
+      <th>city</th>
+      <td><input type="text" ng-model="vm.newInfo.city"></td>
+    </tr>
+    <tr>
+      <th>state</th>
+      <td><input type="text" ng-model="vm.newInfo.state"></td>
+    </tr>
+    <tr>
+      <th>ZIP</th>
+      <td><input type="text" ng-model="vm.newInfo.zip"></td>
+    </tr>
+    <tr>
+      <th>street address</th>
+      <td><input type="text" ng-model="vm.newInfo.street_address1"></td>
+    </tr>
+    <tr>
+      <th>apt or condo #</th>
+      <td><input type="text" ng-model="vm.newInfo.street_address2"></td>
+    </tr>
+    <tr>
+      <th>your gym</th>
+      <td><input type="text" ng-model="vm.newInfo.gym"></td>
+    </tr>
+  </table>
+
+  <table>
+    <caption>lifts &amp; workout prefs</caption>
+    <tr>
+      <th>age</th>
+      <td><input type="text" ng-model="vm.newInfo.age"></td>
+    </tr>
+    <tr>
+      <th>weight</th>
+      <td><input type="text" ng-model="vm.newInfo.weight"></td>
+    </tr>
+    <tr>
+      <th>workout frequency (per week)</th>
+      <td><input type="text" ng-model="vm.newInfo.workout_freq"></td>
+    </tr>
+    <tr>
+      <th>workout time</th>
+      <td><input type="text" ng-model="vm.newInfo.workout_time"></td>
+    </tr>
+    <tr>
+      <th>max bench press (lbs)</th>
+      <td><input type="text" ng-model="vm.newInfo.bench"></td>
+    </tr>
+    <tr>
+      <th>max back squat (lbs)</th>
+      <td><input type="text" ng-model="vm.newInfo.squat"></td>
+    </tr>
+    <tr>
+      <th>max deadlift (lbs)</th>
+      <td><input type="text" ng-model="vm.newInfo.deadlift"></td>
+    </tr>
+  </table>
+<button type="submit" class="btn btn-default">Update!</button>
+</form>

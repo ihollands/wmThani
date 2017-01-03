@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost/wmThani')
+var Schema = mongoose.Schema
+var ObjectId = Schema.ObjectId
 
 mongoose.connection.on('error', err => {
   console.log(err)
@@ -10,8 +11,7 @@ mongoose.connection.once('open', () => {
   console.log("database has been connected")
 })
 
-var Schema = mongoose.Schema
-var ObjectId = Schema.ObjectId
+
 
 var ConnectionSchema = new Schema({
   messages: [{content:String, sent_at: Date, user_id: ObjectId}],
@@ -79,9 +79,7 @@ var Connection = mongoose.model("Connection", ConnectionSchema)
 var User = mongoose.model("User", UserSchema)
 
 
-module.exports = mongoose
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost/wmThani')
 
-// {
-//   User,
-//   Connection,
-// }
+module.exports = mongoose
