@@ -39,6 +39,13 @@
     UserEditControllerFunction
   ])
 
+  app.controller("UserGymCtrl", [
+    "$state",
+    "$stateParams",
+    "User",
+    UserGymControllerFunction
+  ])
+
 //Config Functions
 function RouterFunction ($stateProvider, $locationProvider, $urlRouterProvider) {
   $stateProvider
@@ -59,15 +66,21 @@ function RouterFunction ($stateProvider, $locationProvider, $urlRouterProvider) 
       controllerAs: "vm"
     })
     .state("show", {
-      url: "/users/:username",
+      url: "/users/:_id",
       templateUrl: "/assets/ng-views/users/user-show.html",
       controller: "UserShowCtrl",
       controllerAs: "vm"
     })
     .state("edit", {
-      url: "/users/:username/edit",
+      url: "/users/:_id/edit",
       templateUrl: "/assets/ng-views/users/user-edit.html",
       controller: "UserEditCtrl",
+      controllerAs: "vm"
+    })
+    .state("gym", {
+      url: "/users/:_id/gym",
+      templateUrl: "/assets/ng-views/users/user-gym.html",
+      controller: "UserGymCtrl",
       controllerAs: "vm"
     })
 
@@ -76,7 +89,7 @@ function RouterFunction ($stateProvider, $locationProvider, $urlRouterProvider) 
 }
 
 function UserFactoryFunction ($resource) {
-    return $resource("/api/users/:username", {}, {
+    return $resource("/api/users/:_id", {}, {
       update: {method: "PUT"}
     })
   }
@@ -91,18 +104,18 @@ function LoginControllerFunction ($state, User) {
     }
 
     vm.onSubmit = function () {
-      User.get({username: vm.credentials.username}).$promise.then(function(response) {
-          vm.user = response;
-          if(vm.credentials.username == vm.user.username) {
-          if (vm.credentials.password == vm.user.hash) {
-            $state.go("show", {username: vm.credentials.username})
+      User.query().$promise.then(response => {
+        vm.users = response;
+        var extantUser = vm.users.find(x => x.username === vm.credentials.username)
+        if (extantUser) {
+          if (vm.credentials.password === extantUser.hash) {
+            $state.go("show", {_id: extantUser._id})
             }
             else alert("The password you entered does not match out records for that user. Please try again.")
-
         } else alert("Account not found. If you do not have an account, please register.")
       })
     }
-}
+  }
 
 
 function RegisterControllerFunction ($state, User) {
@@ -112,7 +125,7 @@ function RegisterControllerFunction ($state, User) {
 
   vm.create = function() {
     vm.user.$save().then(() => {
-      $state.go("show", {username: vm.user.username})
+      $state.go("show", {_id: vm.user._id})
     })
 
   }
@@ -123,33 +136,62 @@ function RegisterControllerFunction ($state, User) {
 function UserShowControllerFunction($state, $stateParams, User) {
   var vm = this
 
-  vm.user = User.get({username: $stateParams.username})
+  vm.user = User.get({_id: $stateParams._id})
 
   vm.onSubmit = function() {
-    $state.go("edit", {username: $stateParams.username})
+    $state.go("edit", {_id: $stateParams._id})
   }
 }
 
 function UserEditControllerFunction($state, $stateParams, User) {
   var vm = this
 
-  User.get({username: $stateParams.username}).$promise.then(response => {
+  User.get({_id: $stateParams._id}).$promise.then(response => {
     vm.user = response
   })
 
   vm.update = function(){
-    vm.user.$update({username: $stateParams.username}).then(function(){
-      $state.go("show", {username: $stateParams.username})
+    vm.user.$update({_id: $stateParams._id}).then(function(){
+      $state.go("show", {_id: $stateParams._id})
     })
 
   }
 
   vm.destroy = function() {
-    vm.user.$delete({name: $stateParams.name}).then(function(){
+    vm.user.$delete({_id: $stateParams._id}).then(function(){
         $state.go("welcome")
       })
   }
 
+}
+
+function UserGymControllerFunction($state, $stateParams, User) {
+  var vm = this
+
+  vm.user = {}
+
+  vm.gymFilter = function(gymuser) {
+    return (gymuser.gym === vm.user.gym) && (gymuser._id !== vm.user._id)
+  }
+
+  User.get({_id: $stateParams._id}).$promise.then(response => {
+    vm.user = response;
+    User.query({gym: vm.user.gym}).$promise.then(response => {
+      vm.gymusers = response;
+    })
+  })
+
+  vm.createConnection = function(user) {
+    vm.connection = new Connection({})
+
+    vm.create = function() {
+      vm.user.$save().then(() => {
+        $state.go("show", {_id: vm.user._id})
+      })
+
+    }
+
+  }
 }
 
 

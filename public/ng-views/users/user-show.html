@@ -1,9 +1,11 @@
 <h2>Welcome, {{vm.user.username}}!</h2>
+  <nav>
+    <p><a data-ui-sref="edit({_id: vm.user._id})">Edit Profile</a> | <a data-ui-sref="gym({_id: vm.user._id})">Connect</a></p>
+  </nav>
 
 <img src="{{vm.user.img_url}}" alt="{{vm.user.username}} profile photo">
 
 <table>
-  <caption>user</caption>
   <tr>
     <th>first name</th>
     <td>{{vm.user.first_name}}</td>
@@ -19,7 +21,6 @@
 </table>
 
 <table>
-  <caption>location</caption>
   <tr>
     <th>city</th>
     <td>{{vm.user.city}}</td>
@@ -77,5 +78,3 @@
     <td>{{vm.user.deadlift}}</td>
   </tr>
 </table>
-
-<a data-ui-sref="edit({username: vm.user.username})">Edit Profile</a>

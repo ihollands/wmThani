@@ -31,8 +31,8 @@ app.get("/api/users", function(req, res){
     });
   });
 
-app.get("/api/users/:username", function(req, res){
-  User.findOne({username: req.params.username}).then(function(user){
+app.get("/api/users/:_id", function(req, res){
+  User.findOne({_id: req.params._id}).then(function(user){
     res.json(user)
   });
 });
@@ -43,15 +43,14 @@ app.post("/api/users", function(req, res){
   });
 });
 
-app.delete("/api/users/:username", function(req, res){
-  User.findOneAndRemove({username: req.params.username}).then(function(){
+app.delete("/api/users/:_id", function(req, res){
+  User.findOneAndRemove({_id: req.params._id}).then(function(){
     res.json({success: true})
   });
 });
 
-app.put("/api/users/:username", function(req, res){
-  console.log(req.body)
-  User.findOneAndUpdate({username: req.params.username}, req.body, {new: true}).then(function(user){
+app.put("/api/users/:_id", function(req, res){
+  User.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}).then(function(user){
     res.json(user)
   });
 });

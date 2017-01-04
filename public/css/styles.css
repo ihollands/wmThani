@@ -16,14 +16,12 @@ th {
   text-transform: capitalize;
   width: 50%;
   border-top: 3px solid black;
-  border-bottom: 3px solid rgba(0,0,0,0);
 
 }
 
 td {
   text-align: center;
   border-top: 3px solid black;
-  border-bottom: 3px solid rgba(0,0,0,0);
 }
 
 img {
@@ -63,4 +61,37 @@ input {
 input:focus {
   border-bottom: 3px solid darkred;
   color: darkred;
+}
+
+nav {
+  margin: 0 auto;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.col-md-6 {
+  width: 40%;
+}
+
+.gym-container {
+  width: 100%;
+  display: flex;
+  justify-content:space-around;
+}
+
+.gym-container>div {
+  width: 33.3%;
+}
+
+.left {
+  border: 1px solid red;
+}
+
+.middle {
+  border: 1px solid white;
+  text-align: center;
+}
+
+.right {
+  border: 1px solid blue;
 }

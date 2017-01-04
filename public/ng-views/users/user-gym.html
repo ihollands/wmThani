@@ -1,0 +1,24 @@
+<h2>Other users who workout at {{vm.user.gym}}</h2>
+
+<div class="gym-container" ng-repeat="user in vm.gymusers | filter: vm.gymFilter">
+
+  <div class="left">
+    <p>Age: {{user.age}}</p>
+    <p>Weight: {{user.weight}}</p>
+    <p>Workout Frequency/Week: {{user.workout_freq}}</p>
+    <p>Workout Time: {{user.workout_time}}</p>
+  </div>
+
+  <div class="middle">
+    <h3>{{user.username}}</h3>
+    <img src="{{user.img_url}}"/>
+  </div>
+
+  <div class="right">
+    <p>Bench: {{user.bench}}</p>
+    <p>Backsquat: {{user.squat}}</p>
+    <p>Deadlift: {{user.deadlift}}</p>
+    <button data-ng-click="vm.createConnection(user._id)">Connect with {{user.username}}</button>
+  </div>
+
+</div>
