@@ -55,6 +55,36 @@ app.put("/api/users/:_id", function(req, res){
   });
 });
 
+app.get("/api/connections", function(req, res){
+  Connection.find({}).then(function(connections){
+    res.json(connections)
+    });
+  });
+
+app.get("/api/connections/:_id", function(req, res){
+  Connection.findOne({_id: req.params._id}).then(function(connection){
+    res.json(connection)
+  });
+});
+
+app.post("/api/connections", function(req, res){
+  Connection.create(req.body).then(function(connection){
+    res.json(connection);
+  });
+});
+
+app.delete("/api/connections/:_id", function(req, res){
+  Connection.findOneAndRemove({_id: req.params._id}).then(function(){
+    res.json({success: true})
+  });
+});
+
+app.put("/api/connections/:_id", function(req, res){
+  Connection.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}).then(function(connection){
+    res.json(connection)
+  });
+});
+
 app.get("/*", function(req, res){
   res.render("primary")
 })

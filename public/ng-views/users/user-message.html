@@ -1,0 +1,13 @@
+<h2>Your conversation with {{vm.user2.username}}</h2>
+
+<div class="messages-container">
+
+  <div class="messages" data-ng-repeat="message in vm.connection.messages | orderBy: 'sent_at'">
+    <p>{{message.content}} <span>Sent: {{message.sent_at | date: 'medium'}}</span></p>
+  </div>
+
+</div>
+
+<div id="message-input">
+  <input type="text" placeholder="Type your message here">
+</div>

@@ -14,6 +14,7 @@ mongoose.connection.once('open', () => {
 
 
 var ConnectionSchema = new Schema({
+  users:[ObjectId],
   messages: [{content:String, sent_at: Date, user_id: ObjectId}],
 })
 
