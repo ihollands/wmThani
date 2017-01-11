@@ -10,7 +10,7 @@ mongoose.connect(mongodbUri, options)
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
 
-mongoose.connection.once('open' function() {
+mongoose.connection.once('open', function() {
 
 
 var Schema = mongoose.Schema

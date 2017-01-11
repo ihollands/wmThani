@@ -316,15 +316,6 @@ function UserMessageControllerFunction ($state, $stateParams, User, Connection) 
     vm.connection.$update({_id: $stateParams.conn_id}).then(() => $state.reload())
   }
 
-  // vm.update = function(){
-  //   vm.user.$update({_id: $stateParams._id}).then(function(){
-  //     $state.go("show", {_id: $stateParams._id})
-  //   })
-  //
-  // }
-
-
-
 
 }
 
