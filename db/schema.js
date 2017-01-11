@@ -8,8 +8,7 @@ var mongodbUri = 'mongodb://heroku_b2tgwfj2:'+ process.env.pass + '@ds159978.mla
 mongoose.Promise = global.Promise
 mongoose.connect(mongodbUri, options)
 
-mongoose.connection.on('error', console.error.bind(console, 'connection error:')
-})
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
 
 mongoose.connection.once('open' function() {
 
