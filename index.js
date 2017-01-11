@@ -17,10 +17,7 @@ app.engine(".hbs", hbs({
   defaultLayout:  "layout-main"
 }));
 
-//serves favicon from public/favicon.ico (uncomment when present)
-//designates "public" directory as "assets"
-//tells body parser to parse JSON
-// app.use(favicon(__dirname + '/public/favicon.ico'))
+
 app.use("/assets", express.static("public"))
 app.use(bodyParser.json());
 
