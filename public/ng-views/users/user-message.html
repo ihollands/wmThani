@@ -9,16 +9,14 @@
 <div class="messages container">
 
   <div data-ng-repeat="message in vm.connection.messages | orderBy: 'sent_at'">
-    <p data-ng-class="{'user1': message.username === vm.user1.username, 'user2': message.username === vm.user2.username}">{{message.content}} <span class="timestamp">Sent: {{message.sent_at | date: 'medium'}}</span></p>
+    <div ng-class="(message.user_id === vm.user1._id) ? 'user1' : 'user2'">{{message.content}} <span class="timestamp">Sent: {{message.sent_at | date: 'medium'}}</span></div>
   </div>
 
 </div>
 
-<form data-ng-submit="vm.createMessage()">
+<form id="message-form" data-ng-submit="vm.createMessage()">
   <div id="message-input-container">
-      <input id="message-input" type="text" placeholder="Type your message here" data-ng-model="vm.newMessage.content"/>
-      <div id="message-button">
-        <button type="submit">send</button>
-      </div>
+    <input id="message-input" type="text" placeholder="Type your message here" data-ng-model="vm.newMessage.content"/>
   </div>
+      <button type="submit">send</button>
 </form>

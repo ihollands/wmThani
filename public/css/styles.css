@@ -122,7 +122,7 @@ input {
   font-size: 1.2em;
   border: none;
   background-color: transparent;
-  color: #073642;
+  color: #5cbdd6;
 }
 
 input:focus {
@@ -154,8 +154,7 @@ nav {
   text-align: center;
 }
 
-#message-input-container {
-  border: 1px solid darkgray;
+#message-form {
   position: fixed;
   bottom: 0px;
   height: 8%;
@@ -164,15 +163,27 @@ nav {
   display: flex;
 }
 
-#message-input {
-  height: 100%;
-  width: 90%;
+#message-input-container {
+  padding-top: 3px;
+  background-color: #222;
+  border: 3px solid #222;
+  width: 95%;
 }
 
-#message-button {
-  border: 1px solid blue;
+#message-form > button {
+  border: 3px solid #222;
+  border-radius: 0;
   height: 100%;
   width: 10%;
+}
+
+#message-input {
+  padding: none;
+  font-size: 2em;
+  position: relative;
+  bottom: 0px;
+  width: 90%;
+  color: darkred;
 }
 
 #connections-container {
@@ -208,16 +219,19 @@ span.timestamp {
   background-color: #222;
 }
 
-.messages.container {
+.messages.container > div {
   color: white;
+  padding: .5em;
+  font-size: 1.2em;
 }
 
-.user1 {
+div.user1 {
   text-align:left;
 }
 
-.user2 {
+div.user2 {
   text-align: right;
+  color: darkred;
 }
 
 .form-group {
