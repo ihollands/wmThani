@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var mongodbUri = 'mongodb://<dbuser>:<dbpassword>@ds159978.mlab.com:59978/heroku_b2tgwfj2'
+var mongodbUri = 'mongodb://heroku_b2tgwfj2:' + process.env.pass + '@ds159978.mlab.com:59978/heroku_b2tgwfj2'
 
 mongoose.Promise = global.Promise
 mongoose.connect(mongodbUri)
