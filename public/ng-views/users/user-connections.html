@@ -1,9 +1,14 @@
-<a data-ui-sref="show({_id: vm.user._id})">Return to profile</a>
+<h1 id="welcome-link"><a href="/">Weight Mate</a></h1>
+<nav>
+  <a data-ui-sref="show({_id: vm.user._id})">Return to profile</a>
+</nav>
 
 <h2 data-ng-show="vm.user.gym">Your connections at {{vm.user.gym}}</h2>
 
-<div data-ng-repeat="connectedUser in vm.connectedUsers">
-  <button data-ng-click="vm.viewConnection(connectedUser)">{{connectedUser.username}}</button>
+<div id="connections-container">
+  <div class="connection" data-ng-repeat="connectedUser in vm.connectedUsers">
+    <button data-ng-click="vm.viewConnection(connectedUser)">{{connectedUser.username}}</button>
+  </div>
   <h3 data-ng-hide="vm.connectedUsers">No connections to show</h3>
 </div>
 
@@ -11,25 +16,50 @@
 
 <h2 data-ng-show="vm.user.gym">Connect with other members of {{vm.user.gym}}</h2>
 
-<div class="gym-container" data-ng-show="vm.gymusers" data-ng-repeat="gymuser in vm.gymusers | filter:vm.gymFilter">
+<div class="gym container" data-ng-show="vm.gymusers" data-ng-repeat="gymuser in vm.gymusers | filter:vm.gymFilter">
 
   <div class="left">
-    <p>Age: {{gymuser.age}}</p>
-    <p>Weight: {{gymuser.weight}}</p>
-    <p>Workout Frequency/Week: {{gymuser.workout_freq}}</p>
-    <p>Workout Time: {{gymuser.workout_time}}</p>
+    <table>
+      <tr>
+        <th>Age</th>
+        <td>{{gymuser.age}}</td>
+      </tr>
+      <tr>
+        <th>Weight</th>
+        <td>{{gymuser.weight}}</td>
+      </tr>
+      <tr>
+        <th>Workout Frequency/Week</th>
+        <td>{{gymuser.workout_freq}}</td>
+      </tr>
+      <tr>
+        <th>Workout Time</th>
+        <td>{{gymuser.workout_time}}</td>
+      </tr>
+    </table>
   </div>
 
   <div class="middle">
-    <h3>{{gymuser.username}}</h3>
-    <img src="{{gymuser.img_url}}"/>
+    <h3><span class="user-stats">{{gymuser.username}}</span></h3>
+    <img src="{{gymuser.img_url}}" alt="No photo"/>
   </div>
 
   <div class="right">
-    <p>Bench: {{gymuser.bench}}</p>
-    <p>Backsquat: {{gymuser.squat}}</p>
-    <p>Deadlift: {{gymuser.deadlift}}</p>
-    <button data-ng-click="vm.openConnection(gymuser)">Connect with {{gymuser.username}}</button>
+    <table>
+      <tr>
+        <th>Bench</th>
+        <td>{{gymuser.bench}}</td>
+      </tr>
+      <tr>
+        <th>Backsquat</th>
+        <td>{{gymuser.squat}}</td>
+      </tr>
+      <tr>
+        <th>Deadlift</th>
+        <td>{{gymuser.deadlift}}</td>
+      </tr>
+    </table>
+    <button data-ng-click="vm.createConnection(gymuser)">Connect with {{gymuser.username}}</button>
   </div>
 
 </div>

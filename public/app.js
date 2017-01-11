@@ -48,6 +48,7 @@
     "$state",
     "$stateParams",
     "User",
+    "Connection",
     UserConnectionsIndexControllerFunction
   ])
 
@@ -152,13 +153,13 @@ function LoginControllerFunction ($state, User) {
 
     vm.onSubmit = function () {
       User.query().$promise.then(response => {
-        vm.users = response;
-        var extantUser = vm.users.find(x => x.username === vm.credentials.username)
+        vm.allUsers = response;
+        var extantUser = vm.allUsers.find(x => x.username === vm.credentials.username)
         if (extantUser) {
           if (vm.credentials.password === extantUser.hash) {
             $state.go("show", {_id: extantUser._id})
             }
-            else alert("The password you entered does not match out records for that user. Please try again.")
+            else alert("The password you entered does not match our records. Please try again.")
         } else alert("Account not found. If you do not have an account, please register.")
       })
     }
@@ -171,10 +172,17 @@ function RegisterControllerFunction ($state, User) {
   vm.user = new User()
 
   vm.create = function() {
-    vm.user.$save().then(() => {
-      $state.go("show", {_id: vm.user._id})
+    User.query().$promise.then(response => {
+      vm.allUsers = response;
+      var extantUser = vm.allUsers.find(x => x.username === vm.user.username)
+      if(extantUser) {
+        alert("That username is already taken. Please try again using another username.")
+      } else {
+        vm.user.$save().then(() => {
+          $state.go("show", {_id: vm.user._id})
+        })
+      }
     })
-
   }
 
 }
@@ -214,7 +222,7 @@ function UserEditControllerFunction($state, $stateParams, User) {
 
 }
 
-function UserConnectionsIndexControllerFunction($state, $stateParams, User) {
+function UserConnectionsIndexControllerFunction($state, $stateParams, User, Connection) {
   var vm = this
 
   var connectedUserIds = []
@@ -257,6 +265,23 @@ function UserConnectionsIndexControllerFunction($state, $stateParams, User) {
     $state.go("message", {_id: vm.user._id, conn_id: connection._id})
   }
 
+  vm.createConnection = function(gymuser) {
+    var connection = new Connection({
+      users:[vm.user._id, gymuser._id],
+      messages: []
+    })
+    console.log(connection)
+    connection.$save().then(() =>{
+    vm.user.connections.push(connection)
+    gymuser.connections.push(connection)
+    vm.user.$update({_id: vm.user._id}).then(() => {
+      gymuser.$update({_id:gymuser._id}).then(() => {
+        $state.go("message", {_id: vm.user._id, conn_id: connection._id})
+      })
+    })
+  })
+}
+
 }
 
 function UserMessageControllerFunction ($state, $stateParams, User, Connection) {
@@ -266,6 +291,7 @@ function UserMessageControllerFunction ($state, $stateParams, User, Connection) 
   vm.connection = {}
   vm.user1 = {}
   vm.user2 = {}
+  vm.newMessage = {}
 
   Connection.get({_id: $stateParams.conn_id}).$promise.then(response => {
     vm.connection = response
@@ -283,24 +309,19 @@ function UserMessageControllerFunction ($state, $stateParams, User, Connection) 
     })
   })
 
+  vm.createMessage = function() {
+    vm.newMessage.sent_at = Date.now()
+    vm.newMessage.user_id = vm.user1._id
+    vm.connection.messages.push(vm.newMessage)
+    vm.connection.$update({_id: $stateParams.conn_id}).then(() => $state.reload())
+  }
 
-  vm.createConnection = function() {
-    vm.connection = new Connection({
-      users:[vm.user1._id, vm.user2._id],
-      messages: []
-    })
-    console.log(vm.connection)
-    vm.connection.$save().then(() =>{
-    vm.user1.connections.push(vm.connection)
-    vm.user2.connections.push(vm.connection)
-    vm.user1.$update({_id: vm.user1._id}).then(() => {
-      vm.user2.$update({_id: vm.user2._id}).then(() => {
-        $state.reload()
-      })
-    })
-  })
-}
-
+  // vm.update = function(){
+  //   vm.user.$update({_id: $stateParams._id}).then(function(){
+  //     $state.go("show", {_id: $stateParams._id})
+  //   })
+  //
+  // }
 
 
 

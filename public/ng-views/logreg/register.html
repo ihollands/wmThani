@@ -1,7 +1,7 @@
-<div class="container">
+<div class="bg" id="welcome-logreg">
+  <h1 id="welcome-link"><a href="/">Weight Mate</a></h1>
+    <div class="logreg">
 
-  <div class="row">
-    <div class="col-md-6">
       <h1>Register</h1>
       <p class="lead">Already a member? Please <a ui-sref="login">sign in</a> instead.</p>
       <form ng-submit="vm.create()">
@@ -11,11 +11,10 @@
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.user.password">
+          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="vm.user.hash">
         </div>
         <button type="submit" class="btn btn-default">Register</button>
       </form>
-    </div>
-  </div>
 
+  </div>
 </div>

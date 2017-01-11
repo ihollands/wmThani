@@ -1,13 +1,24 @@
+<h1 id="welcome-link"><a href="/">Weight Mate</a></h1>
+
+<nav>
+  <a data-ui-sref="connections({_id: vm.user1._id})">Return to connections</a>
+</nav>
+
 <h2>Your conversation with {{vm.user2.username}}</h2>
 
-<div class="messages-container">
+<div class="messages container">
 
-  <div class="messages" data-ng-repeat="message in vm.connection.messages | orderBy: 'sent_at'">
-    <p>{{message.content}} <span>Sent: {{message.sent_at | date: 'medium'}}</span></p>
+  <div data-ng-repeat="message in vm.connection.messages | orderBy: 'sent_at'">
+    <p data-ng-class="{'user1': message.username === vm.user1.username, 'user2': message.username === vm.user2.username}">{{message.content}} <span class="timestamp">Sent: {{message.sent_at | date: 'medium'}}</span></p>
   </div>
 
 </div>
 
-<div id="message-input">
-  <input type="text" placeholder="Type your message here">
-</div>
+<form data-ng-submit="vm.createMessage()">
+  <div id="message-input-container">
+      <input id="message-input" type="text" placeholder="Type your message here" data-ng-model="vm.newMessage.content"/>
+      <div id="message-button">
+        <button type="submit">send</button>
+      </div>
+  </div>
+</form>

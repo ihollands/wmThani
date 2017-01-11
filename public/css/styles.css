@@ -1,39 +1,104 @@
+/*font-family: 'Black Ops One', cursive;
+font-family: 'Marvel', sans-serif;*/
+
+
 html, body {
-font-family: 'Open Sans', sans-serif;
-background-color: lightgrey;
+font-family: 'Black Ops One', cursive;
+margin: 0;
+padding: 0;
+height: 100%;
+background-color: darkgrey;
+}
+
+a {
+  text-decoration: none;
+  color: darkred;
+}
+
+a:hover {
+  color: white;
+  border-top: 1px solid darkred;
+  border-bottom: 1px solid darkred;
+}
+
+.bg {
+  height: 96vh;
+  margin: 0;
+  padding: 1em;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.logreg {
+  background-image: url(./images/standing_welcome-logreg_gradient.jpg);
+  background-position: 50% 26%;
+  background-size: 255%;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 40%;
+  padding: 1em;
+  border: 2px solid white;
+  text-align: center;
+  border-radius: 30px;
+
+}
+
+#welcome-logreg {
+  background-image: url(./images/standing_welcome-logreg-blur.jpg)
+}
+
+#welcome-link {
+  text-align: center;
 }
 
 table {
   border-collapse: separate;
   border-spacing: .2em 2em;
   margin: 20px auto;
-  width: 50%;
+  width: 90%;
   vertical-align: middle;
+  text-align: center;
+  color: white;
 }
 
 th {
   font-weight: bold;
   text-transform: capitalize;
-  width: 50%;
-  border-top: 3px solid black;
+  width: 20%;
+  border-top: 3px solid white;
 
 }
 
 td {
-  text-align: center;
-  border-top: 3px solid black;
+  width: 25%;
+  font-family: 'Marvel', sans-serif;
+  font-size: 1.2em;
+  border-top: 3px solid white;
+}
+
+.divider {
+  width: 10%;
+  border: none;
 }
 
 img {
-  display: block;
-  margin: 10px auto;
   height: 200px;
-  border-radius: 100px;
+  width: 200px;
+  /*display: block;*/
+  margin: 10px auto;
+  border-radius: 30px;
+  box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  color: darkred;
 }
 
 h2 {
   text-align: center;
   text-transform: uppercase;
+  color:darkred;
+}
+
+h3 {
+  color: darkred;
 }
 
 .flex {
@@ -44,6 +109,7 @@ h2 {
 
 label {
   display: inline;
+  text-align: left;
 }
 
 input {
@@ -52,10 +118,11 @@ input {
   margin: 0 auto;
   width: 100%;
   display: block;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
+  font-family: 'Marvel', sans-serif;
+  font-size: 1.2em;
   border: none;
   background-color: transparent;
+  color: #073642;
 }
 
 input:focus {
@@ -65,44 +132,113 @@ input:focus {
 
 nav {
   margin: 0 auto;
-  border: 1px solid white;
   text-align: center;
 }
 
-.col-md-6 {
-  width: 40%;
+#button-box {
+  margin: 30px auto;
+  text-align: center;
 }
 
-.gym-container {
-  width: 100%;
+.gym {
+  margin: 0 auto;
+  width: 80%;
   display: flex;
-  justify-content:space-around;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.gym-container>div {
+.gym > div {
   width: 33.3%;
-}
-
-.left {
-  border: 1px solid red;
-}
-
-.middle {
-  border: 1px solid white;
   text-align: center;
 }
 
-.right {
-  border: 1px solid blue;
+#message-input-container {
+  border: 1px solid darkgray;
+  position: fixed;
+  bottom: 0px;
+  height: 8%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
 }
 
 #message-input {
-  position: fixed;
-  left: 0;
-  bottom: 10px;
-  width: 100%;
+  height: 100%;
+  width: 90%;
 }
 
-span {
-  font-size: .5em;
+#message-button {
+  border: 1px solid blue;
+  height: 100%;
+  width: 10%;
+}
+
+#connections-container {
+  display: flex;
+  justify-content: center;
+}
+
+.connection {
+  text-align: center;
+  height: 60px;
+  width: 250px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.connection button {
+  width: 80%;
+}
+
+span.timestamp {
+  font-size: .8em;
+  font-family: 'Marvel', sans-serif;
+}
+
+.container {
+  width: 80%;
+  margin: 30px auto;
+  text-align: center;
+  border: 2px solid white;
+  border-radius: 30px;
+  padding: 1em;
+  box-shadow: 0px 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: #222;
+}
+
+.messages.container {
+  color: white;
+}
+
+.user1 {
+  text-align:left;
+}
+
+.user2 {
+  text-align: right;
+}
+
+.form-group {
+  padding: .75em;
+}
+
+.container form {
+  padding: 1em;
+}
+
+button {
+  font-family: 'Black Ops One', cursive;
+  text-decoration: none;
+  background-color: transparent;
+  border: 2px solid darkred;
+  border-radius: 15px;
+  font-size: 1em;
+  padding: .5em;
+}
+
+button:hover {
+  background-color: darkred;
+  color: white;
 }
