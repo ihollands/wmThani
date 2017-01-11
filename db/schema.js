@@ -10,8 +10,14 @@ mongoose.connect(mongodbUri, options)
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
 
-mongoose.connection.once('open', function() {
-
+mongoose.connection.once('open', err => {
+  if (err) {
+    console.log(err)
+  }
+  else {
+    console.log("open")
+  }
+})
 
 var Schema = mongoose.Schema
 var ObjectId = Schema.ObjectId
@@ -86,5 +92,3 @@ var User = mongoose.model("User", UserSchema)
 
 
 module.exports = mongoose
-
-})
