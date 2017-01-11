@@ -1,17 +1,17 @@
 var mongoose = require("mongoose");
 
-var mongodbUri = 'mongodb://heroku_b2tgwfj2:' + process.env.pass + '@ds159978.mlab.com:59978/heroku_b2tgwfj2'
+var options = { server: {socketOptions: {keepAlive: 300000, connectTimeoutMS: 30000 } },
+                replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
+var mongodbUri = 'mongodb://heroku_b2tgwfj2:'+ process.env.pass + '@ds159978.mlab.com:59978/heroku_b2tgwfj2'
 
 mongoose.Promise = global.Promise
-mongoose.connect(mongodbUri)
+mongoose.connect(mongodbUri, options)
 
-mongoose.connection.on('error', err => {
-  console.log(err)
+mongoose.connection.on('error', console.error.bind(console, 'connection error:')
 })
 
-mongoose.connection.once('open', () => {
-  console.log("database has been connected")
-})
+mongoose.connection.once('open' function() {
 
 
 var Schema = mongoose.Schema
@@ -87,3 +87,5 @@ var User = mongoose.model("User", UserSchema)
 
 
 module.exports = mongoose
+
+})
