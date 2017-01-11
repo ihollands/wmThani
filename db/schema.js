@@ -1,7 +1,9 @@
 var mongoose = require("mongoose");
 
-var Schema = mongoose.Schema
-var ObjectId = Schema.ObjectId
+var mongodbUri = 'mongodb://<dbuser>:<dbpassword>@ds159978.mlab.com:59978/heroku_b2tgwfj2'
+
+mongoose.Promise = global.Promise
+mongoose.connect(mongodbUri)
 
 mongoose.connection.on('error', err => {
   console.log(err)
@@ -11,6 +13,9 @@ mongoose.connection.once('open', () => {
   console.log("database has been connected")
 })
 
+
+var Schema = mongoose.Schema
+var ObjectId = Schema.ObjectId
 
 
 var ConnectionSchema = new Schema({
@@ -80,7 +85,5 @@ var Connection = mongoose.model("Connection", ConnectionSchema)
 var User = mongoose.model("User", UserSchema)
 
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/wmThani')
 
 module.exports = mongoose
